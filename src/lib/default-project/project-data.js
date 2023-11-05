@@ -70,7 +70,27 @@ const projectData = translateFunction => {
                 variables: {},
                 lists: {},
                 broadcasts: {},
-                blocks: {},
+                blocks: {
+                    "E*@wvU.X%Ezf_in]iIyM": {
+                        opcode: "plottybot_connectToPlotty",
+                        next: null,
+                        parent: null,
+                        inputs: {
+                            INDEX: [
+                                1,
+                                [
+                                    4,
+                                    "1"
+                                ]
+                            ]
+                        },
+                        fields: {},
+                        shadow: false,
+                        topLevel: true,
+                        x: 270,
+                        y: 165
+                    }
+                },
                 currentCostume: 0,
                 costumes: [
                     {
@@ -112,6 +132,9 @@ const projectData = translateFunction => {
                 draggable: false,
                 rotationStyle: 'all around'
             }
+        ],
+        extensions: [
+            "plottybot"
         ],
         meta: {
             semver: '3.0.0',

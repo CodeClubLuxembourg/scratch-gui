@@ -18,7 +18,7 @@ const base = {
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     devtool: 'cheap-module-source-map',
     devServer: {
-        contentBase: path.resolve(__dirname, 'build'),
+        contentBase: [path.resolve(__dirname, 'build'), path.resolve(__dirname, 'www')],
         host: '0.0.0.0',
         port: process.env.PORT || 8601
     },

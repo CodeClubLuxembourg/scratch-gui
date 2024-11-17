@@ -114,9 +114,6 @@ const projectData = translateFunction => {
                 rotationStyle: 'all around'
             }
         ],
-        extensions: [
-            "plottybot"
-        ],
         meta: {
             semver: '3.0.0',
             vm: '0.1.0',

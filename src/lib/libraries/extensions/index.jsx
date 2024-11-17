@@ -103,7 +103,7 @@ export default [
         insetIconURL: plottybotInsetIconURL,
         description: (
             <FormattedMessage
-                defaultMessage="Draw with your sprites."
+                defaultMessage="Bring your drawings to life with PlottyBot! Control a real robot and make amazing art."
                 description="Description for the 'Plottybot' extension"
                 id="gui.extension.plottybot.description"
             />

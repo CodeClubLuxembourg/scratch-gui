@@ -1,4 +1,5 @@
 {
-   "Device1": "192.168.178.26",
-   "Device2": "192.168.178.26"
+   "Device1": "plottybot01.local",
+   "Device2": "plottybot02.local",
+   "Device3": "192.168.105.41"
 }

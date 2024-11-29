@@ -174,6 +174,7 @@ class MenuBar extends React.Component {
         bindAll(this, [
             'handleClickNew',
             'handleClickNewMandala',
+            'handleClickNewExplosion',
             'handleClickRemix',
             'handleClickSave',
             'handleClickSaveAsCopy',
@@ -219,18 +220,37 @@ class MenuBar extends React.Component {
             this.props.vm.stopAll();
             this.props.vm.clear();
 
-            // Option 1: Load a predefined `.sb3` template with the mandala setup
-            fetch('/mandala.sb3')
+            // Load a predefined `.sb3` template with the mandala setup
+            fetch('/projects/mandala.sb3')
                 .then(response => response.arrayBuffer())
                 .then(buffer => this.props.vm.loadProject(buffer))
                 .catch(error => console.error('Failed to load Mandala project:', error));
 
-            // Option 2 (if .sb3 is not used): Add blocks programmatically
-            // this.addMandalaBlocks(); // You would need to implement this function
+            this.props.onRequestCloseFile();
+        }
+    }
+    handleClickNewExplosion () {
+        // Confirm that the user wants to replace the current project
+        const readyToReplaceProject = this.props.confirmReadyToReplaceProject(
+            this.props.intl.formatMessage(sharedMessages.replaceProjectWarning)
+        );
+        this.props.onRequestCloseFile();
+
+        if (readyToReplaceProject) {
+            // Stop and clear the current project
+            this.props.vm.stopAll();
+            this.props.vm.clear();
+
+            // Load a predefined `.sb3` template with the explosion setup
+            fetch('/projects/explosion.sb3')
+                .then(response => response.arrayBuffer())
+                .then(buffer => this.props.vm.loadProject(buffer))
+                .catch(error => console.error('Failed to load Explosion project:', error));
 
             this.props.onRequestCloseFile();
         }
     }
+
 
     handleClickRemix() {
         this.props.onClickRemix();
@@ -433,6 +453,13 @@ class MenuBar extends React.Component {
                 id="gui.menuBar.newMandala"
             />
         );
+        const newExplosionMessage = (
+            <FormattedMessage
+                defaultMessage="New Explosion"
+                description="Menu bar item for creating a new explosion project"
+                id="gui.menuBar.newExplosion"
+            />
+        );
         const remixButton = (
             <Button
                 className={classNames(
@@ -511,6 +538,12 @@ class MenuBar extends React.Component {
                                             onClick={this.handleClickNewMandala} // New handler for New Mandala
                                         >
                                             {newMandalaMessage}
+                                        </MenuItem>
+                                        <MenuItem
+                                            isRtl={this.props.isRtl}
+                                            onClick={this.handleClickNewExplosion} // New handler for New Explosion
+                                        >
+                                            {newExplosionMessage}
                                         </MenuItem>
                                     </MenuSection>
                                     {(this.props.canSave || this.props.canCreateCopy || this.props.canRemix) && (
